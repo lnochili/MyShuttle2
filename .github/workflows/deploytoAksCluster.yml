@@ -22,7 +22,7 @@ jobs:
     - name: Build and push image to ACR
       id: build-image
       run: |
-        docker build "$GITHUB_WORKSPACE/src" -f  "src/Dockerfile" -t aksrepo2505.azurecr.io/aksnew2505:${{ github.sha }}
+        docker build $GITHUB_WORKSPACE/src -f  "src/Dockerfile" -t aksrepo2505.azurecr.io/aksnew2505:${{ github.sha }}
         docker push aksrepo2505.azurecr.io/aksnew2505:${{ github.sha }}
     
     - uses: azure/k8s-set-context@v1
