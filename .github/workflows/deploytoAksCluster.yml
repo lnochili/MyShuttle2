@@ -16,8 +16,8 @@ jobs:
     - uses: azure/docker-login@v1
       with:
         login-server: aksrepo2505.azurecr.io
-        username: ${{ secrets.acr_aksrepo2505_username }}
-        password: ${{ secrets.acr_aksrepo2505_password }}
+        username: ${{ secrets.ACR_AKSREPO2505_USERNAME }}
+        password: ${{ secrets.ACR_AKSREPO2505_PASSWORD }}
     
     - name: Build and push image to ACR
       id: build-image
@@ -27,7 +27,7 @@ jobs:
     
     - uses: azure/k8s-set-context@v1
       with:
-         kubeconfig: ${{ secrets.aks_aksnew2505_kubeConfig }}
+         kubeconfig: ${{ secrets.AKS_AKSNEW2505_KUBECONFIG }}
       id: login
     
     - name: Create namespace
@@ -42,8 +42,8 @@ jobs:
       with:
         namespace: aksnew2505f72e
         container-registry-url: aksrepo2505.azurecr.io
-        container-registry-username: ${{ secrets.acr_aksrepo2505_username }}
-        container-registry-password: ${{ secrets.acr_aksrepo2505_password }}
+        container-registry-username: ${{ secrets.ACR_AKSREPO2505_USERNAME }}
+        container-registry-password: ${{ secrets.ACR_AKSREPO2505_PASSWORD }}
         secret-name: aksnew2505dockerauth
        
     - uses: azure/k8s-deploy@v1
