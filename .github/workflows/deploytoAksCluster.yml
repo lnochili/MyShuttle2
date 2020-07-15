@@ -1,0 +1,51 @@
+on: [push]
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    
+    - uses: azure/docker-login@v1
+      with:
+        login-server: aksrepo2505.azurecr.io
+        username: ${{ secrets.acr_aksrepo2505_username }}
+        password: ${{ secrets.acr_aksrepo2505_password }}
+    
+    - name: Build and push image to ACR
+      id: build-image
+      run: |
+        docker build "$GITHUB_WORKSPACE/src" -f  "src/Dockerfile" -t aksrepo2505.azurecr.io/aksnew2505:${{ github.sha }}
+        docker push aksrepo2505.azurecr.io/aksnew2505:${{ github.sha }}
+    
+    - uses: azure/k8s-set-context@v1
+      with:
+         kubeconfig: ${{ secrets.aks_aksnew2505_kubeConfig }}
+      id: login
+    
+    - name: Create namespace
+      run: |
+        namespacePresent=`kubectl get namespace | grep aksnew2505f72e | wc -l`
+        if [ $namespacePresent -eq 0 ]
+        then
+            echo `kubectl create namespace aksnew2505f72e`
+        fi
+
+    - uses: azure/k8s-create-secret@v1
+      with:
+        namespace: aksnew2505f72e
+        container-registry-url: aksrepo2505.azurecr.io
+        container-registry-username: ${{ secrets.acr_aksrepo2505_username }}
+        container-registry-password: ${{ secrets.acr_aksrepo2505_password }}
+        secret-name: aksnew2505dockerauth
+       
+    - uses: azure/k8s-deploy@v1
+      with:
+        namespace: aksnew2505f72e
+        manifests: |
+          manifests/deployment.yml
+          manifests/service.yml
+          manifests/ingress.yml
+        images: |
+          aksrepo2505.azurecr.io/aksnew2505:${{ github.sha }}
+        imagepullsecrets: |
+          aksnew2505dockerauth
