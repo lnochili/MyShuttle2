@@ -49,3 +49,4 @@ jobs:
           aksrepo2505.azurecr.io/aksnew2505:${{ github.sha }}
         imagepullsecrets: |
           aksnew2505dockerauth
+          
