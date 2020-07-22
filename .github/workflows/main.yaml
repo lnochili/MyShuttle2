@@ -37,6 +37,7 @@ jobs:
     - name: Build and push image to ACR
       id: build-image
       run: |
+        echo $GITHUB_WORKSPACE
         docker build ./src -f  "./src/Dockerfile" -t aksrepo2505.azurecr.io/myshuttle:${{ github.sha }}
         docker push aksrepo2505.azurecr.io/myshuttle:${{ github.sha }}
     
