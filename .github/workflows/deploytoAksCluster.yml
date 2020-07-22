@@ -17,10 +17,11 @@ jobs:
     - name: Build with Maven
       run: 
         mvn -Dmaven.test.skip=true -B package --file pom.xml
-        echo $GITHUB_WORKSPACE      
+             
     - name: Build and push image to ACR
       id: build-image
       run: |
+        echo $GITHUB_WORKSPACE 
         docker build "./src" -f  "src/Dockerfile" -t aksrepo2505.azurecr.io/aksnew2505:${{ github.sha }}
         docker push aksrepo2505.azurecr.io/aksnew2505:${{ github.sha }}
     
