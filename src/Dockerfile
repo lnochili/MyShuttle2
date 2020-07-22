@@ -13,5 +13,4 @@ RUN set -x \
     && rm -R *
 
 RUN export CLASSPATH=$CLASSPATH:/usr/share/java/mysql-connector-java.jar
-ADD $GITHUB_WORKSPACE/target/myshuttledev.war /usr/local/tomcat/webapps/myshuttledev.war
-
+ADD ./target/myshuttledev.war /usr/local/tomcat/webapps/myshuttledev.war
