@@ -4,13 +4,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    
     - uses: azure/docker-login@v1
       with:
         login-server: aksrepo2505.azurecr.io
         username: ${{ secrets.acr_aksrepo2505_username }}
         password: ${{ secrets.acr_aksrepo2505_password }}
-    
+      #build java app
+    - name: Set up JDK 1.8
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+    - name: Build with Maven
+      run: mvn -Dmaven.test.skip=true -B package --file pom.xml
+      
     - name: Build and push image to ACR
       id: build-image
       run: |
