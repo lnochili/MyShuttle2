@@ -35,6 +35,7 @@ jobs:
 
   acrpush:
     runs-on: ubuntu-latest
+    needs: build
     steps:
     - name: Login to ACR
       uses: azure/docker-login@v1
@@ -52,6 +53,7 @@ jobs:
   
   deploy:
     runs-on: ubuntu-latest
+    needs: acrpush
     steps:
     - uses: azure/k8s-set-context@v1
       with:
