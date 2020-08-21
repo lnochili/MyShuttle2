@@ -1,7 +1,7 @@
 on:  
   push:
     paths: 
-      [.github/workflows/main.yaml ]
+      [.github/workflows/main1.yaml ]
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
