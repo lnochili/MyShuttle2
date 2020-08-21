@@ -31,7 +31,7 @@ jobs:
     - name: show the target directory
       run: |
         ls ./target
-        ls ./usr/share
+        pwd
 
   acrpush:
     runs-on: ubuntu-latest
