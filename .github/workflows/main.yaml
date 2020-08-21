@@ -31,7 +31,7 @@ jobs:
       run: ls ./target
     - name: show the /usr/share directory
       run: ls ./usr/share
- 
+    - name: Login to ACR
     - uses: azure/docker-login@v1
       with:
         login-server: aksrepo2505.azurecr.io
