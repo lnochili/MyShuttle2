@@ -27,10 +27,12 @@ jobs:
         java-version: 1.8
     - name: Build with Maven
       run: mvn -Dmaven.test.skip=true -B package --file pom.xml
+    
     - name: show the target directory
       run: ls ./target
     - name: show the /usr/share directory
       run: ls ./usr/share
+   
     - name: Login to ACR
     - uses: azure/docker-login@v1
       with:
