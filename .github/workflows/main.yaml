@@ -42,7 +42,7 @@ jobs:
     - name: Build and push image to ACR
       id: build-image
       env: 
-        wardir: $GITHUB_WORKSPACE 
+        wardir: $(GITHUB_WORKSPACE)
       run: |
         echo ${{ env.wardir }}
         ls ./target
