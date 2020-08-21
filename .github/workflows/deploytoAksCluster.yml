@@ -1,4 +1,7 @@
-on: [push]
+on:  
+  push:
+    paths: 
+      [.github/workflows/main.yaml ]
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
