@@ -11,7 +11,6 @@ RUN set -x \
     && mv /home/mysql/mysql-connector-java-5.1.40/mysql-connector-java-5.1.40-bin.jar /usr/share/java/mysql-connector-java.jar \
     && cd /home \
     && rm -R *
-RUN pwd \
-    && ls $wardir
+
 RUN export CLASSPATH=$CLASSPATH:/usr/share/java/mysql-connector-java.jar
-ADD $wardir/target/myshuttledev.war /usr/local/tomcat/webapps/myshuttledev.war
+ADD ./target/myshuttledev.war /usr/local/tomcat/webapps/myshuttledev.war
