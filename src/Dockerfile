@@ -12,7 +12,7 @@ RUN set -x \
     && cd /home \
     && rm -R *
 RUN pwd \
-    && ls $GITHUB_WORKSPACE
+    && ls $GITHUB_WORKSPACE \
     && ls $WARDIR
 RUN export CLASSPATH=$CLASSPATH:/usr/share/java/mysql-connector-java.jar
 ADD $WARDIR/target/myshuttledev.war /usr/local/tomcat/webapps/myshuttledev.war
