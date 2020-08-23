@@ -55,13 +55,6 @@ jobs:
 
 # Deployment to Kubernetes
 
-    - uses: azure/k8s-create-secret@v1
-      with:
-        namespace: aksnew2505bd87
-        container-registry-url: aksrepo2505.azurecr.io
-        container-registry-username: ${{ secrets.acr_aksrepo2505_username }}
-        container-registry-password: ${{ secrets.acr_aksrepo2505_password }}
-        secret-name: aksrepo2505dockerauth
     - uses: azure/aks-set-context@v1
       with:
         creds: '${{ secrets.AZURE_CREDENTIALS }}' # Azure credentials
@@ -76,7 +69,13 @@ jobs:
         then
             echo `kubectl create namespace myshuttle2`
         fi
-       
+    - uses: azure/k8s-create-secret@v1
+      with:
+        namespace: aksnew2505bd87
+        container-registry-url: aksrepo2505.azurecr.io
+        container-registry-username: ${{ secrets.acr_aksrepo2505_username }}
+        container-registry-password: ${{ secrets.acr_aksrepo2505_password }}
+        secret-name: aksrepo2505dockerauth       
     - uses: azure/k8s-deploy@v1
       with:
         namespace: myshuttl2
