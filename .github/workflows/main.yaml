@@ -43,7 +43,7 @@ jobs:
     - name: Build and push image to ACR
       id: build-image
       env: 
-        wardir: 'none'
+        wardir: '.'
       run: |
         echo "::set-env name=wardir::$GITHUB_WORKSPACE"
         ls ${{ env.wardir }}
