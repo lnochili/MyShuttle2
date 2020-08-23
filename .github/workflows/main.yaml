@@ -6,17 +6,15 @@ name: CI
 # events but only for the master branch
 on:
   push:
-    paths: 
-      [.github/workflows/main.yaml ]
-#   branches: [ master ]
+    branches: [ master ]
+#    paths: 
+#     [.github/workflows/main.yaml ]
 #   pull_request:
 #   branches: [ master ]
 
 # A workflow to build Myshuttle docker image
-jobs:
-
-     
-  build:
+jobs:  
+  build-and-deploy:
     env: 
       wardir: '.'
     runs-on: ubuntu-latest
