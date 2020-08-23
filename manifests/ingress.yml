@@ -1,17 +1,8 @@
-apiVersion: extensions/v1
+apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-    name: "aksnew2505-9c39"
-    labels:
-        app: "aksnew2505-9c39"
-    annotations:
-        kubernetes.io/ingress.class: addon-http-application-routing
+  name: "aksnew2505-9c39"
 spec:
-    rules:
-        - host: akspublic2505-dns-7f8be44c.hcp.eastus.azmk8s.io
-          http:
-            paths:
-            - path: /
-              backend:
-                serviceName: "aksnew2505-9c39"
-                servicePort: 80
+  backend:
+    serviceName: "aksnew2505-9c39"
+    servicePort: 80
