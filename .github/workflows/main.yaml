@@ -14,8 +14,11 @@ on:
 
 # A workflow to build Myshuttle docker image
 jobs:
-  
+
+     
   build:
+    env: 
+      wardir: '.'
     runs-on: ubuntu-latest
     steps:
     - name: checkout code
@@ -32,6 +35,7 @@ jobs:
     - name: show the target directory
       run: |
         ls ./target
+        echo "::set-env name=wardir::$GITHUB_WORKSPACE"
 
     - name: Login to ACR
       uses: azure/docker-login@v1
@@ -42,11 +46,9 @@ jobs:
     
     - name: Build and push image to ACR
       id: build-image
-      env: 
-        wardir: '.'
+    
       run: |
-        echo "::set-env name=wardir::$GITHUB_WORKSPACE"
-        ls ${{ env.wardir }}
+        echo "war directory:"${{ env.wardir }}
         docker build ./src -f  "./src/Dockerfile" -t aksrepo2505.azurecr.io/myshuttle2:${{ github.sha }}
         docker push aksrepo2505.azurecr.io/myshuttle:${{ github.sha }}
   
