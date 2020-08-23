@@ -54,23 +54,24 @@ jobs:
         docker push aksrepo2505.azurecr.io/myshuttle2:${{ github.sha }}
 
 # Deployment to Kubernetes
-  
-    - uses: azure/k8s-set-context@v1
+    - uses: azure/aks-set-context@v1
       with:
-         kubeconfig: ${{ secrets.AKS_AKSNEW2505_KUBECONFIG }}
+        creds: '${{ secrets.AZURE_CREDENTIALS }}' # Azure credentials
+        resource-group: 'AKSVNETRG'
+        cluster-name: 'aksarc2505'
       id: login
     
     - name: Create namespace
       run: |
-        namespacePresent=`kubectl get namespace | grep aksnew2505f72e | wc -l`
+        namespacePresent=`kubectl get namespace | grep myshuttle2 | wc -l`
         if [ $namespacePresent -eq 0 ]
         then
-            echo `kubectl create namespace aksnew2505f72e`
+            echo `kubectl create namespace myshuttle2`
         fi
        
     - uses: azure/k8s-deploy@v1
       with:
-        namespace: aksnew2505f72e
+        namespace: myshuttl2
         manifests: |
           manifests/deployment.yml
           manifests/service.yml
@@ -78,4 +79,5 @@ jobs:
         images: |
           aksrepo2505.azurecr.io/myshuttle2:${{ github.sha }}
         imagepullsecrets: |
-          aksnew2505dockerauth
+          ${{ secrets.ACR_AKSREPO2505_USERNAME }}
+          ${{ secrets.ACR_AKSREPO2505_PASSWORD }}
