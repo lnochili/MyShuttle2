@@ -78,7 +78,7 @@ jobs:
         secret-name: aksrepo2505dockerauth       
     - uses: azure/k8s-deploy@v1
       with:
-        namespace: myshuttl2
+        namespace: myshuttle2
         manifests: |
           manifests/deployment.yml
           manifests/service.yml
