@@ -7,7 +7,7 @@ spec:
   template:
     metadata:
       labels:
-        app: "aksnew2505-9c39"
+        app: aksnew2505-9c39
     spec:
       containers:
         - name: "aksnew2505-9c39"
