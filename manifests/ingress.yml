@@ -8,7 +8,7 @@ metadata:
         kubernetes.io/ingress.class: addon-http-application-routing
 spec:
     rules:
-        - host: https://akspublic2505-dns-7f8be44c.hcp.eastus.azmk8s.io
+        - host: akspublic2505-dns-7f8be44c.hcp.eastus.azmk8s.io
           http:
             paths:
             - path: /
