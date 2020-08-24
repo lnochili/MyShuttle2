@@ -1,19 +1,14 @@
   
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
     name: "aksnew2505-9c39"
     labels:
         app: "aksnew2505-9c39"
     annotations:
-        kubernetes.io/ingress.class: addon-http-application-routing-ingress-nginx
-
+        nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
-    rules:
-        - host: myshuttle.cb37bf228e0b4cbd9386.eastus.aksapp.io
-          http:
-            paths:
-            - path: /myshuttle
-              backend:
-                serviceName: "aksnew2505-9c39"
-                servicePort: 80
+  backend:
+    serviceName: "aksnew2505-9c39"
+    servicePort: 80
+    
