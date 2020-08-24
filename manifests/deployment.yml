@@ -13,11 +13,11 @@ spec:
         app: myshuttle
     spec:
       containers:
-        - name: "myshuttle"
+        - name: "myshuttle-web"
           image: "aksrepo2505.azurecr.io/myshuttle-web"
           ports:
           - containerPort: 80
-        - name: "aksnew2505-9c39"
+        - name: "myshuttle-db"
           image: "aksrepo2505.azurecr.io/myshuttle-db"
           ports:
           - containerPort: 3306
