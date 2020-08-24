@@ -79,6 +79,7 @@ jobs:
         namespace: myshuttle2
         manifests: |
           manifests/deployment.yml
+          manifests/ingress.yml
           manifests/service.yml
         images: |
           aksrepo2505.azurecr.io/myshuttle2:${{ github.sha }}
