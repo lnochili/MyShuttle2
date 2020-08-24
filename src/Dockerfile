@@ -1,4 +1,4 @@
-FROM tomcat:9-jre8-alpine
+FROM tomcat:9.0
 
 RUN apk --update add curl ca-certificates tar 
 #RUN set -x \
