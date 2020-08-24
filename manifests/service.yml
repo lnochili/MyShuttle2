@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-    name: "myshuttle"
+    name: "myshuttle-web"
     labels:
-        app: "myshuttle"
+        app: "myshuttle-web"
 spec:
     type: ClusterIP
     ports:
