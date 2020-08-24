@@ -31,6 +31,8 @@ spec:
     metadata:
       labels:
         app: myshuttle-db
+    spec:
+      containers:
         - name: "myshuttle-db"
           image: "aksrepo2505.azurecr.io/myshuttle-db"
           ports:
