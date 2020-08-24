@@ -80,7 +80,6 @@ jobs:
         manifests: |
           manifests/deployment.yml
           manifests/service.yml
-          manifests/ingress.yml
         images: |
           aksrepo2505.azurecr.io/myshuttle2:${{ github.sha }}
         imagepullsecrets: |
