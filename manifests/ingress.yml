@@ -6,9 +6,14 @@ metadata:
     labels:
         app: "aksnew2505-9c39"
     annotations:
-        nginx.ingress.kubernetes.io/rewrite-target: /
+        kubernetes.io/ingress.class: addon-http-application-routing
 spec:
-  backend:
-    serviceName: "aksnew2505-9c39"
-    servicePort: 80
+  rules:
+  - host: aksnew2505-9c39.cb37bf228e0b4cbd9386.eastus.aksapp.io
+    http:
+      paths:
+      - backend:
+          serviceName: "aksnew2505-9c39"
+          servicePort: 80
+        path: /
     
