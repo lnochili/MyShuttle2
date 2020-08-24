@@ -50,7 +50,7 @@ jobs:
         ls ${{ env.wardir }}
         docker build . -f  "./src/Dockerfile" -t aksrepo2505.azurecr.io/myshuttle-web:${{ github.sha }} 
         docker push aksrepo2505.azurecr.io/myshuttle-web:${{ github.sha }}
-        docker build ./src -f  "./db/Dockerfile" -t aksrepo2505.azurecr.io/myshuttle-db:${{ github.sha }} 
+        docker build ./src -f  "./src/db/Dockerfile" -t aksrepo2505.azurecr.io/myshuttle-db:${{ github.sha }} 
         docker push aksrepo2505.azurecr.io/myshuttle-db:${{ github.sha }}
 
 # Deployment to Kubernetes
