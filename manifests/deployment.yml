@@ -1,22 +1,36 @@
 apiVersion : apps/v1
 kind: Deployment
 metadata:
-  name: "myshuttle"
+  name: "myshuttle-web"
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: myshuttle
+      app: myshuttle-web
   template:
     metadata:
       labels:
-        app: myshuttle
+        app: myshuttle-web
     spec:
       containers:
         - name: "myshuttle-web"
           image: "aksrepo2505.azurecr.io/myshuttle-web"
           ports:
           - containerPort: 80
+---
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: "myshuttle-db"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: myshuttle-db
+  template:
+    metadata:
+      labels:
+        app: myshuttle-db
         - name: "myshuttle-db"
           image: "aksrepo2505.azurecr.io/myshuttle-db"
           ports:
