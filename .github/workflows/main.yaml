@@ -60,13 +60,13 @@ jobs:
         cluster-name: 'akspublic2505'
       id: login
     
-    - name: Create namespace
-      run: |
-        namespacePresent=`kubectl get namespace | grep myshuttle2 | wc -l`
-        if [ $namespacePresent -eq 0 ]
-        then
-            echo `kubectl create namespace myshuttle2`
-        fi
+#    - name: Create namespace
+#     run: |
+#       namespacePresent=`kubectl get namespace | grep myshuttle2 | wc -l`
+#       if [ $namespacePresent -eq 0 ]
+#        then
+#            echo `kubectl create namespace myshuttle2`
+#        fi
     - uses: azure/k8s-create-secret@v1
       with:
         namespace: myshuttle2
@@ -76,12 +76,13 @@ jobs:
         secret-name: aksrepo2505dockerauth       
     - uses: azure/k8s-deploy@v1
       with:
-        namespace: myshuttle2
+        namespace: default
         manifests: |
           manifests/deployment.yml
           manifests/ingress.yml
           manifests/service.yml
         images: |
-          aksrepo2505.azurecr.io/myshuttle2:${{ github.sha }}
+          aksrepo2505.azurecr.io/myshuttle-web:${{ github.sha }}
+          aksrepo2505.azurecr.io/myshuttle-db:${{ github.sha }}
         imagepullsecrets: |
           aksrepo2505dockerauth
