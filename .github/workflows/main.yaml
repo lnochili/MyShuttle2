@@ -59,7 +59,7 @@ jobs:
       with:
         creds: '${{ secrets.AZURE_CREDENTIALS }}' # Azure credentials
         resource-group: 'AKSVNETRG'
-        cluster-name: 'akspublic2505'
+        cluster-name: 'k8stest'
       id: login
     
 #    - name: Create namespace
