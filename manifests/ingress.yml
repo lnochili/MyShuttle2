@@ -6,14 +6,14 @@ metadata:
     labels:
         app: "myshuttle"
     annotations:
-        kubernetes.io/ingress.class: addon-http-application-routing
+        kubernetes.io/ingress.class: nginx
 spec:
   rules:
-  - host: myshuttle.cb37bf228e0b4cbd9386.eastus.aksapp.io
     http:
       paths:
-      - backend:
-          serviceName: "myshuttle-web"
-          servicePort: 8080
         path: /myshuttle
+        - backend:
+            serviceName: "myshuttle-web"
+            servicePort: 80
+
     
