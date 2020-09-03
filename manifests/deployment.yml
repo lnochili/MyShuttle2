@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: "myshuttle-web"
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: myshuttle-web
@@ -23,7 +23,7 @@ kind: Deployment
 metadata:
   name: "myshuttle-db"
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: myshuttle-db
