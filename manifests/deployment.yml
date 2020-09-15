@@ -17,6 +17,7 @@ spec:
           image: "aksrepo2505.azurecr.io/myshuttle-web"
           ports:
           - containerPort: 80
+          - containerPort: 8080
 ---
 apiVersion : apps/v1
 kind: Deployment
